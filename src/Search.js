@@ -16,7 +16,7 @@ const Search = ( {onSearchValue} ) => {
         <div>
             <form>
                 <input type='text' value={value} onChange={e => setValue(e.target.value)} />
-                <button onClick={onSearch}>CLICK</button>   
+                <button onClick={onSearch} onTouchStart={onSearch}>CLICK</button>   
             </form>
             
         </div>
