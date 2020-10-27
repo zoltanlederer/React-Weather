@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: 'http://api.openweathermap.org'
+    baseURL: 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org'
 });
 
 
