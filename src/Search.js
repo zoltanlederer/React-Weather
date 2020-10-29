@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Search.css';
 
 const Search = ( {onSearchValue} ) => {
 
@@ -17,9 +18,11 @@ const Search = ( {onSearchValue} ) => {
 
     return (
         <div>
-            <form>
-                <input type='text' placeholder='Search city' value={value} onChange={e => setValue(e.target.value)} />
-                <button onClick={onSearch}>Search</button>
+            <form className='search-form'>
+                <h1><a href='index.html'>Weather</a></h1>
+                <input className='search-input' type='text' placeholder='Search city' value={value} onChange={e => setValue(e.target.value)} />
+                <br />
+                <button className='search-btn' onClick={onSearch}>Search</button>
             </form>
             
         </div>

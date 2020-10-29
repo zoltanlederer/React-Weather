@@ -3,6 +3,7 @@ import Search from './Search';
 import Main from './Main';
 import weather from './api/weather';
 import './App.css';
+import LoadingSpinner from './LoadingSpinner';
 import bg from './images/bg.jpg';
 
 const KEY = '&appid=21324c920748e543e68cc51a99754d90'
@@ -12,13 +13,16 @@ const lang = 'en';
 function App() {
 
   const [results, setResult] = useState('');
+  const [loading, setLoading] = useState(false);
   const [coord, setCoord] = useState({});
   const [forecast, setForecast] = useState('');
 
   const search = async (value) => {
     try {
       setForecast('');
+      setLoading(true);
       const response = await weather.get('/data/2.5/weather?q=' + value + '&units=metric' + KEY + '&lang=' + lang);
+      setLoading(false);
       setResult(response.data);  
       setCoord({lat: response.data.coord.lat, lon: response.data.coord.lon});
     } catch (err) {
@@ -31,11 +35,12 @@ function App() {
     const response = await weather.get('/data/2.5/onecall?lat=' + coord.lat + '&lon=' + coord.lon + '&units=metric' + KEY + '&lang=' + lang);
     setForecast(response.data);
   }
-
+  
   return (
     <div className="App">
-      <Search onSearchValue={search} />
-      <Main results={results} forecast={forecast}  onSearchForeCast={weatherSearch} />
+      {/* <Search onSearchValue={search} /> */}
+      { loading ? <LoadingSpinner /> : <Search onSearchValue={search} /> }
+      <Main results={results} forecast={forecast} onSearchForeCast={weatherSearch} />
     </div>
   );
 }

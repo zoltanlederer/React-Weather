@@ -92,14 +92,14 @@ const Main = ( {results, forecast, onSearchForeCast} ) => {
             }
 
             // Temperature
-            weather.temperature.data = results.main.temp;
+            weather.temperature.data = parseInt(results.main.temp);
             for (const property in results.main) {
-                if (property === 'feels_like') { weather.tempFeels.data = results.main.feels_like }
+                if (property === 'feels_like') { weather.tempFeels.data = parseInt(results.main.feels_like) }
                 //Atmospheric pressure 
                 if (property === 'pressure') { weather.pressure.data = results.main.pressure }
                 if (property === 'humidity') { weather.humidity.data = results.main.humidity }
-                if (property === 'temp_min') { weather.minTemperature.data = results.main.temp_min }
-                if (property === 'temp_max') { weather.maxTemperature.data = results.main.temp_max }
+                if (property === 'temp_min') { weather.minTemperature.data = parseInt(results.main.temp_min) }
+                if (property === 'temp_max') { weather.maxTemperature.data = parseInt(results.main.temp_max) }
             }
 
             // Wind
@@ -163,20 +163,20 @@ const Main = ( {results, forecast, onSearchForeCast} ) => {
                 const milliseconds = unixTimeStamp * 1000;
                 const dateObject = new Date(milliseconds);
 
-                forecastArr[idx].tempMin = forecast.daily[idx].temp.min;
-                forecastArr[idx].tempMax = forecast.daily[idx].temp.max;
+                forecastArr[idx].tempMin = parseInt(forecast.daily[idx].temp.min);
+                forecastArr[idx].tempMax = parseInt(forecast.daily[idx].temp.max);
                 forecastArr[idx].icon = forecast.daily[idx].weather[0].icon;
                 forecastArr[idx].weekday = dateObject.toLocaleString('en-GB', {weekday: 'long'});
         }   
     }
 
-    
+    console.log(weather);
 
     return (
         <div className='weather-wrap'>
-            <h1>Weather</h1>
+            {/* <h1>Weather</h1> */}
             
-            { results === '' ? <h2>Search city</h2> : 
+            { results === '' ? <h2>Hi there,<br />Please search for a city for weather information</h2> : 
             <div className='container container-current container-current-active'>
                 <div className='main-city'>
                 <h1>{weather.city.data}, {weather.country.data}</h1>
@@ -186,6 +186,7 @@ const Main = ( {results, forecast, onSearchForeCast} ) => {
                 <div className='main-current-weather-pt1'>
                 <div>
                     <h1>{weather.temperature.data} &#8451;</h1>
+                    <h2><span className='temp-max'>{weather.maxTemperature.data} &#8451;</span> / <span className='temp-min'>{weather.minTemperature.data} &#8451;</span></h2>
                     <p>Feels like <br /><span>{weather.tempFeels.data} &#8451;</span></p>
                     
                     {/* <h5>Update {weather.timeOfData.data}</h5> */}
@@ -218,15 +219,18 @@ const Main = ( {results, forecast, onSearchForeCast} ) => {
 
             { forecast === '' ? '' : 
             <div className='container container-forecast container-forecast-active'>
-                <h1>{weather.city.data}, {weather.country.data}</h1>
-                <h2>8 Day Forecast</h2>
+                <div className='main-city'>
+                    <h1>{weather.city.data}, {weather.country.data}</h1>
+                    <h2>8 Day Forecast</h2>
+                </div>
+
                 {foreCast()}
                 <div className='forecast-day'>
                 
                 {forecastArr.map(data => (
-                    <ul key={data.icon+data.tempMin+data.tempMax}>
+                    <ul key={Math.random()}>
                     <li>{data.weekday}</li>
-                    <li>{data.tempMax} &#8451; / {data.tempMin} &#8451;</li>
+                    <li><span className='temp-max'>{data.tempMax} &#8451;</span> / <span className='temp-min'>{data.tempMin} &#8451;</span></li>
                     <li><img src={require(`./images/${data.icon}.png`)} alt={data.icon} /></li>
                     </ul>
                     )

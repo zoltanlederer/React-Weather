@@ -1,0 +1,43 @@
+.search-form {
+    margin: 20px;
+    text-align: center;
+}
+
+.search-form h1 a,
+.search-form h1 a:hover,
+.search-form h1 a:active,
+.search-form h1 a:visited {
+    font-family: 'Fredoka One', cursive;
+    font-size: 4rem;
+    color: #3983AD;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.search-input {
+    font-family: 'Lora', serif;
+    border-radius: 50px;
+    font-size: 2rem;
+    text-align: center;
+    /* padding-left: 20px; */
+    color: #999;
+    border: 2px solid #c6c6c6;;
+}
+
+.search-btn {
+    font-family: 'Lora', serif;
+    background-image: linear-gradient(to bottom, #546169, #92a5b0);
+    border-radius: 28px;
+    border: 2px solid #c6c6c6;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 5px 25px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.search-btn:hover {
+    background-image: linear-gradient(to bottom, #92a5b0, #546169);
+    text-decoration: none;
+  }
