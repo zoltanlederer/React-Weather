@@ -21,10 +21,4 @@ body {
 .spinner {
     color: #3983AD;
     font-size: 3rem;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    /* position: relative; */
-    /* height: 100vh; */
-    /* width: 100vw; */
 }

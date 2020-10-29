@@ -170,8 +170,6 @@ const Main = ( {results, forecast, onSearchForeCast} ) => {
         }   
     }
 
-    console.log(weather);
-
     return (
         <div className='weather-wrap'>
             {/* <h1>Weather</h1> */}
