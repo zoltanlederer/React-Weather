@@ -32,7 +32,9 @@ function App() {
   }
     
   const weatherSearch = async () => {
+    setLoading(true);
     const response = await weather.get('/data/2.5/onecall?lat=' + coord.lat + '&lon=' + coord.lon + '&units=metric' + KEY + '&lang=' + lang);
+    setLoading(false);
     setForecast(response.data);
   }
   
