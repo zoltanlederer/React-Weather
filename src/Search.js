@@ -11,7 +11,7 @@ const Search = ( {onSearchValue} ) => {
         if (currentActive) {
             currentActive.classList.remove('active');    
         }
-        
+        console.log(value);
         onSearchValue(value);
         setValue('');
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Search from './Search';
 import Main from './Main';
 import weather from './api/weather';
@@ -16,6 +16,10 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [coord, setCoord] = useState({});
   const [forecast, setForecast] = useState('');
+
+  useEffect(() => {
+    search('New York');
+  }, []);
 
   const search = async (value) => {
     try {
